@@ -9,26 +9,30 @@ To use this application, you'll need your Snyk Group ID (found in the Group Sett
 ## Running the Application
 1. Clone this repository to your local machine and navigate to the project directory.
 ```bash
-git clone https://github.com/yourusername/snyk-tag-manager.git
+https://github.com/jeff-snyk/snyk-tag-manager.git
+```
+
+2. Move to the project directory.
+```bash
 cd snyk-tag-manager
 ```
 
-2. Set up a virtual environment.
+3. Set up a virtual environment.
 ```bash
 python3 -m venv venv
 ```
 
-3. Activate the virtual environment.
+4. Activate the virtual environment.
 ```bash
 source venv/bin/activate
 ```
 
-4. Install requirements
+5. Install requirements
 ```bash
 pip install -r requirements.txt
 ```
 
-5. Run the Python script.
+6. Run the Python script.
 ```bash
 python snyk_tag_manager.py
 ```
