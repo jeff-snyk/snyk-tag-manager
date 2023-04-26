@@ -1,6 +1,6 @@
 # Snyk Tag Manager
 
-A simple GUI application to manage tags for app.snyk.io using the Snyk API.
+A simple GUI application to help delete tags for app.snyk.io using the Snyk API.
 
 ## Prerequisites
 
