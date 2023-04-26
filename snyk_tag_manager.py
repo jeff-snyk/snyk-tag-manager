@@ -16,6 +16,11 @@ def fetch_tags(api_key, group_id):
 def list_tags(page=0):
     api_key = api_key_entry.get()
     group_id = group_id_entry.get()
+
+    if not api_key or not group_id:
+        messagebox.showerror("Error", "Please provide both API token and Group ID.")
+        return
+
     tag_data = fetch_tags(api_key, group_id)
 
     tags_treeview.delete(*tags_treeview.get_children())  # Clear the treeview before displaying new tags
@@ -27,6 +32,7 @@ def list_tags(page=0):
     # Update navigation buttons state
     back_button.config(state=tk.NORMAL if page > 0 else tk.DISABLED)
     next_button.config(state=tk.NORMAL if end_index < len(tag_data['tags']) else tk.DISABLED)
+
 
 def delete_tag(api_key, group_id, tag_key, tag_value):
     headers = {
