@@ -18,17 +18,11 @@ python -m tkinter
 
 If Tkinter is installed, a small test window will appear. Close the window to continue.
 
-If Tkinter is not installed, you can try one of the following methods to install it:
-#### Using Homebrew (macOS)
+If Tkinter is not installed, you can install it via Homebrew on macOS:
 
 Note: This method can take a long time.
 ```bash
 brew install python-tk
-```
-
-#### Using pip (not tested, but the internet tells me it works.)
-```bash
-pip3 install tk
 ```
 
 ### Installing requests
