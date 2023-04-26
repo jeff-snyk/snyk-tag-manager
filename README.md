@@ -4,7 +4,7 @@ A simple GUI application to help delete tags for app.snyk.io using the Snyk API.
 
 ## Prerequisites
 
-This project requires Python 3 and Tkinter.
+This project requires Python 3, requests and Tkinter.
 
 You'll also need your Snyk Group ID (found in the Group Settings page) and [Snyk API token](https://docs.snyk.io/snyk-admin/snyk-broker/snyk-broker-code-agent/setting-up-the-code-agent-broker-client-deployment/step-1-obtaining-the-required-tokens-for-the-setup-procedure/obtaining-your-snyk-api-token).
 
@@ -17,19 +17,29 @@ python -m tkinter
 ```
 
 If Tkinter is installed, a small test window will appear. Close the window to continue.
-### Installing Tkinter
 
 If Tkinter is not installed, you can try one of the following methods to install it:
-Using Homebrew (macOS)
+#### Using Homebrew (macOS)
 
 Note: This method can take a long time.
 ```bash
 brew install python-tk@
 ```
 
-Using pip (not tested, but the internet tells me it works.)
+#### Using pip (not tested, but the internet tells me it works.)
 ```bash
 pip3 install tk
+```
+
+### Installing requests
+You can install requests either from requirements.txt:
+```bash
+pip install -r requirements.txt
+```
+
+Or just install it:
+```bash
+pip install requests
 ```
 
 ## Running the Application
