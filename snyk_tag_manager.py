@@ -5,6 +5,11 @@ from PyQt6.QtCore import QModelIndex, Qt
 import requests
 import json
 
+class ButtonStandardItem(QStandardItem):
+    def __init__(self, button: QPushButton):
+        super().__init__()
+        self.button = button
+
 class SnykTagManager(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -56,7 +61,6 @@ class SnykTagManager(QMainWindow):
         self.tags_treeview.setModel(self.model)
         self.tags_treeview.setColumnWidth(0, 300)
         self.tags_treeview.setColumnWidth(1, 75)
-        self.tags_treeview.clicked.connect(self.on_treeview_click)
 
         # Navigation buttons
         nav_layout = QGridLayout()
@@ -101,12 +105,35 @@ class SnykTagManager(QMainWindow):
         end_index = start_index + 25
         for tag in tag_data['tags'][start_index:end_index]:
             tag_item = QStandardItem(f"{tag['key']}: {tag['value']}")
-            delete_item = QStandardItem("Delete")
+
+            delete_button = QPushButton("Delete")
+            # This makes them square grey buttons
+            #delete_button.setStyleSheet("background-color: #D3D3D3;")
+            delete_button.clicked.connect(lambda checked, r=self.model.rowCount(), t=tag: self.on_delete_button_click(r, t))
+            delete_item = ButtonStandardItem(delete_button)
+
             self.model.appendRow([tag_item, delete_item])
+            self.tags_treeview.setIndexWidget(delete_item.index(), delete_button)
 
         # Update navigation buttons state
         self.back_button.setEnabled(page > 0)
         self.next_button.setEnabled(end_index < len(tag_data['tags']))
+
+    def on_delete_button_click(self, row, tag):
+        tag_key, tag_value = tag['key'], tag['value']
+
+        api_key = self.api_key_entry.text()
+        group_id = self.group_id_entry.text()
+        response_status, response_json = self.delete_tag(api_key, group_id, tag_key, tag_value)
+
+        if response_status == 200:
+            self.model.removeRow(row)
+        else:
+            if response_status == 403:
+                message = f"Error deleting tag:\n\n{response_json['message']}. \n\nThis likely means there are projects using this tag."
+            else:
+                message = f"Failed to delete tag. Error code: {response_status}"
+            QMessageBox.critical(self, "Error", message)
 
     def delete_tag(self, api_key, group_id, tag_key, tag_value):
         headers = {
