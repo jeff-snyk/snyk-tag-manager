@@ -9,7 +9,7 @@ To use this application, you'll need your Snyk Group ID (found in the Group Sett
 ## Running the Application
 1. Clone this repository to your local machine and navigate to the project directory.
 ```bash
-https://github.com/jeff-snyk/snyk-tag-manager.git
+git clone https://github.com/jeff-snyk/snyk-tag-manager.git
 ```
 
 2. Move to the project directory.
