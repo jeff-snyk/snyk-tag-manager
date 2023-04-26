@@ -23,7 +23,7 @@ If Tkinter is not installed, you can try one of the following methods to install
 
 Note: This method can take a long time.
 ```bash
-brew install python-tk@
+brew install python-tk
 ```
 
 #### Using pip (not tested, but the internet tells me it works.)
